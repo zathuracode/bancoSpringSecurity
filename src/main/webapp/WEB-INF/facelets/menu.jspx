@@ -1,0 +1,112 @@
+<jsp:root jsfc="f:view" xmlns:jsp="http://java.sun.com/JSP/Page"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+   
+   <html>
+		<body>
+			<f:view>
+				<ui:composition>
+					<!-- Beging Menu -->
+				
+							<h:form>
+							
+								<p:megaMenu style="width:989px">  
+									<p:submenu label="Master" icon="ui-icon-pencil">  
+							            <p:column>
+							            
+							            	 	 <p:submenu label="Clientes">  
+								                    <p:menuitem value="Master Clientes" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/asesorComercial/clientes.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Consignaciones">  
+								                    <p:menuitem value="Master Consignaciones" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/cajero/consignaciones.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Cuentas">  
+								                    <p:menuitem value="Master Cuentas" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/asesorComercial/cuentas.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Retiros">  
+								                    <p:menuitem value="Master Retiros" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/cajero/retiros.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="TiposDocumentos">  
+								                    <p:menuitem value="Master TiposDocumentos" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/tiposDocumentos.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="TiposUsuarios">  
+								                    <p:menuitem value="Master TiposUsuarios" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/tiposUsuarios.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Usuarios">  
+								                    <p:menuitem value="Master Usuarios" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/usuarios.xhtml" />  
+								               	 </p:submenu>
+											 							            </p:column>
+							        </p:submenu>  
+															
+															
+							  
+							        <p:submenu label="Data Table" icon="ui-icon-document">
+							           <p:column>  
+							                								            	 <p:submenu label="Clientes">  
+								                    <p:menuitem value="Clientes" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/asesorComercial/clientesListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Consignaciones">  
+								                    <p:menuitem value="Consignaciones" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/cajero/consignacionesListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Cuentas">  
+								                    <p:menuitem value="Cuentas" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/asesorComercial/cuentasListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Retiros">  
+								                    <p:menuitem value="Retiros" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/cajero/retirosListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="TiposDocumentos">  
+								                    <p:menuitem value="TiposDocumentos" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/tiposDocumentosListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="TiposUsuarios">  
+								                    <p:menuitem value="TiposUsuarios" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/tiposUsuariosListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Usuarios">  
+								                    <p:menuitem value="Usuarios" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/usuariosListDataTable.xhtml" />  
+								               	 </p:submenu>
+											 							            </p:column>
+							        </p:submenu>  
+							  
+							        
+							  
+							  
+							        <p:submenu label="Edit Data Table" icon="ui-icon-contact">  
+							            <p:column>  
+							                								            	 <p:submenu label="Clientes">  
+								                    <p:menuitem value="Clientes" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/asesorComercial/clientesListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Consignaciones">  
+								                    <p:menuitem value="Consignaciones" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/cajero/consignacionesListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Cuentas">  
+								                    <p:menuitem value="Cuentas" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/asesorComercial/cuentasListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Retiros">  
+								                    <p:menuitem value="Retiros" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/cajero/retirosListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="TiposDocumentos">  
+								                    <p:menuitem value="TiposDocumentos" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/tiposDocumentosListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="TiposUsuarios">  
+								                    <p:menuitem value="TiposUsuarios" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/tiposUsuariosListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 								            	 <p:submenu label="Usuarios">  
+								                    <p:menuitem value="Usuarios" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/administrador/usuariosListDataTableEditable.xhtml" />  
+								               	 </p:submenu>
+											 							            </p:column>  
+							        </p:submenu>  
+						  
+						        	<p:menuitem value="Quit" url="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/index.jsp" icon="ui-icon-close" />  
+						    
+						    </p:megaMenu>  
+						</h:form>
+					
+					<!-- end menu -->
+				</ui:composition>
+			</f:view>
+		</body>
+	</html>
+</jsp:root>

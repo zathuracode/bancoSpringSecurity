@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+		  <ui:composition template="/WEB-INF/facelets/template.xhtml">	
+		 
+		 	<ui:define name="body">	
+				<f:view>
+					<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+					<p:dialog modal="true" widgetVar="statusDialog" header="Loading"  draggable="false" closable="false">  
+   						<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+					</p:dialog>
+					
+					<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Expired session"  draggable="false" closable="false">  
+	   					<h:outputText value="The session is finished" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Sign in"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+					
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableClientes" header="ClientesData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{clientesView.data}" var="clientes"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{clientes.cliId}" sortBy="#{clientes.cliId}" >
+										 <f:facet name="header">
+										<h:outputText value="cliId"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.cliId}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{clientes.cliDireccion}" sortBy="#{clientes.cliDireccion}" >
+										 <f:facet name="header">
+										<h:outputText value="CliDireccion"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.cliDireccion}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.cliMail}" sortBy="#{clientes.cliMail}" >
+										 <f:facet name="header">
+										<h:outputText value="CliMail"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.cliMail}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.cliNombre}" sortBy="#{clientes.cliNombre}" >
+										 <f:facet name="header">
+										<h:outputText value="CliNombre"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.cliNombre}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.cliTelefono}" sortBy="#{clientes.cliTelefono}" >
+										 <f:facet name="header">
+										<h:outputText value="CliTelefono"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.cliTelefono}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.tdocCodigo_TiposDocumentos}" sortBy="#{clientes.tdocCodigo_TiposDocumentos}" >
+										 <f:facet name="header">
+										<h:outputText value="TdocCodigo_TiposDocumentos"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.tdocCodigo_TiposDocumentos}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogClientes"
+										actionListener="#{clientesView.action_edit}">
+										<f:attribute name="selectedClientes" value="#{clientes}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{clientesView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedClientes" value="#{clientes}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{clientesView.action_new()}" update=":dialogClientes" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogClientes" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{clientesView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelClientes" header="Clientes">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgCliId" value="CliId"/>
+									 <p:inputText id="txtCliId" binding="#{clientesView.txtCliId}">
+									 <p:ajax update=":dialogClientes" listener="#{clientesView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgCliDireccion" value=" CliDireccion"/>
+									<p:inputText id="txtCliDireccion" disabled="true" binding="#{clientesView.txtCliDireccion}"/>
+																		<h:outputText id="msgCliMail" value=" CliMail"/>
+									<p:inputText id="txtCliMail" disabled="true" binding="#{clientesView.txtCliMail}"/>
+																		<h:outputText id="msgCliNombre" value=" CliNombre"/>
+									<p:inputText id="txtCliNombre" disabled="true" binding="#{clientesView.txtCliNombre}"/>
+																		<h:outputText id="msgCliTelefono" value=" CliTelefono"/>
+									<p:inputText id="txtCliTelefono" disabled="true" binding="#{clientesView.txtCliTelefono}"/>
+																		<h:outputText id="msgTdocCodigo_TiposDocumentos" value=" TdocCodigo_TiposDocumentos"/>
+									<p:inputText id="txtTdocCodigo_TiposDocumentos" disabled="true" binding="#{clientesView.txtTdocCodigo_TiposDocumentos}"/>
+																		
+																    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{clientesView.btnSave}" value="Save" action="#{clientesView.action_save()}" update=":dialogClientes :frm:panelDataTableClientes" />
+									<p:commandButton id="btnClear" value="Clear" action="#{clientesView.action_clear()}" update=":dialogClientes" />
+									<p:commandButton id="btnExit" value="Exit" action="#{clientesView.action_closeDialog()}" update=":dialogClientes" />
+								</div>
+							</p:panel>					
+						</h:form>
+					</p:dialog>
+				</f:view>
+			</ui:define>		
+		</ui:composition>	
+	</h:body>	
+</html>	

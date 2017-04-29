@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2017 10:38:54 AM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.vobi.banco.modelo.TiposUsuarios" table="tipos_usuarios" schema="public" optimistic-lock="version">
+        <id name="tusuCodigo" type="java.lang.Long">
+            <column name="tusu_codigo" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="tusuNombre" type="java.lang.String">
+            <column name="tusu_nombre" length="50" not-null="true" />
+        </property>
+        <set name="usuarioses" table="usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tusu_codigo" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vobi.banco.modelo.Usuarios" />
+        </set>
+    </class>
+</hibernate-mapping>

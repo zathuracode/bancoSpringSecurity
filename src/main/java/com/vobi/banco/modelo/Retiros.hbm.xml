@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2017 10:38:54 AM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.vobi.banco.modelo.Retiros" table="retiros" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.vobi.banco.modelo.RetirosId">
+            <key-property name="retCodigo" type="java.lang.Long">
+                <column name="ret_codigo" precision="10" scale="0" />
+            </key-property>
+            <key-property name="cueNumero" type="java.lang.String">
+                <column name="cue_numero" length="30" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="cuentas" class="com.vobi.banco.modelo.Cuentas" update="false" insert="false" fetch="select">
+            <column name="cue_numero" length="30" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="com.vobi.banco.modelo.Usuarios" fetch="select">
+            <column name="usu_cedula" precision="10" scale="0" />
+        </many-to-one>
+        <property name="retValor" type="java.lang.Double">
+            <column name="ret_valor" precision="10" not-null="true" />
+        </property>
+        <property name="retFecha" type="java.util.Date">
+            <column name="ret_fecha" length="29" not-null="true" />
+        </property>
+        <property name="retDescripcion" type="java.lang.String">
+            <column name="ret_descripcion" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

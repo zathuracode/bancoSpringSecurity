@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2017 10:38:54 AM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.vobi.banco.modelo.Usuarios" table="usuarios" schema="public" optimistic-lock="version">
+        <id name="usuCedula" type="java.lang.Long">
+            <column name="usu_cedula" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tiposUsuarios" class="com.vobi.banco.modelo.TiposUsuarios" fetch="select">
+            <column name="tusu_codigo" precision="10" scale="0" />
+        </many-to-one>
+        <property name="usuNombre" type="java.lang.String">
+            <column name="usu_nombre" length="50" not-null="true" />
+        </property>
+        <property name="usuLogin" type="java.lang.String">
+            <column name="usu_login" length="30" not-null="true" />
+        </property>
+        <property name="usuClave" type="java.lang.String">
+            <column name="usu_clave" length="50" not-null="true" />
+        </property>
+        <set name="consignacioneses" table="consignaciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usu_cedula" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vobi.banco.modelo.Consignaciones" />
+        </set>
+        <set name="retiroses" table="retiros" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usu_cedula" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vobi.banco.modelo.Retiros" />
+        </set>
+    </class>
+</hibernate-mapping>

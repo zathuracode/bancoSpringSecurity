@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2017 10:38:54 AM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.vobi.banco.modelo.Cuentas" table="cuentas" schema="public" optimistic-lock="version">
+        <id name="cueNumero" type="java.lang.String">
+            <column name="cue_numero" length="30" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="clientes" class="com.vobi.banco.modelo.Clientes" fetch="select">
+            <column name="cli_id" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="cueSaldo" type="java.lang.Double">
+            <column name="cue_saldo" precision="10" not-null="true" />
+        </property>
+        <property name="cueActiva" type="java.lang.String">
+            <column name="cue_activa" length="2" not-null="true" />
+        </property>
+        <property name="cueClave" type="java.lang.String">
+            <column name="cue_clave" length="50" not-null="true" />
+        </property>
+        <set name="consignacioneses" table="consignaciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cue_numero" length="30" not-null="true" />
+            </key>
+            <one-to-many class="com.vobi.banco.modelo.Consignaciones" />
+        </set>
+        <set name="retiroses" table="retiros" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cue_numero" length="30" not-null="true" />
+            </key>
+            <one-to-many class="com.vobi.banco.modelo.Retiros" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2017 10:38:54 AM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.vobi.banco.modelo.Clientes" table="clientes" schema="public" optimistic-lock="version">
+        <id name="cliId" type="java.lang.Long">
+            <column name="cli_id" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tiposDocumentos" class="com.vobi.banco.modelo.TiposDocumentos" fetch="select">
+            <column name="tdoc_codigo" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="cliNombre" type="java.lang.String">
+            <column name="cli_nombre" length="50" not-null="true" />
+        </property>
+        <property name="cliDireccion" type="java.lang.String">
+            <column name="cli_direccion" length="50" not-null="true" />
+        </property>
+        <property name="cliTelefono" type="java.lang.String">
+            <column name="cli_telefono" length="50" not-null="true" />
+        </property>
+        <property name="cliMail" type="java.lang.String">
+            <column name="cli_mail" length="50" />
+        </property>
+        <set name="cuentases" table="cuentas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cli_id" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vobi.banco.modelo.Cuentas" />
+        </set>
+    </class>
+</hibernate-mapping>
